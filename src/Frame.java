@@ -7,13 +7,23 @@ public class Frame extends JFrame {
 	JPanel panel;
 	JLabel label;
 
-	Frame (String title, int x, int y, boolean resize, boolean visible) {
+	Frame (String title, int x, int y, boolean resize) {
 		super(title);
 		setSize(x, y);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(resize);
-		setVisible(visible);
-		getContentPane().setBackground(new Color(21,63,130));
+		
+		this.alignCenter();
+		this.setIconOfFrame("src/images/phone_icon.png");
+		
+		Container pane = getContentPane();
+		pane.setLayout(null);
+		pane.setBackground(new Color(21,63,130));
+		
+		JPanel phoneOutline = new Panel(31, new Color(255,255,255));
+		phoneOutline.setBounds(23,30,395,630);
+		phoneOutline.setOpaque(false);
+		pane.add(phoneOutline);
 	}
 	
 	public void alignCenter() {
@@ -25,9 +35,11 @@ public class Frame extends JFrame {
 		ImageIcon icon = new ImageIcon(path);
 		this.setIconImage(icon.getImage());
 	}
-	
+	/*
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawRoundRect(30, 50, 390, 650, 50, 50);
 	}
+	*/
+	
 }
