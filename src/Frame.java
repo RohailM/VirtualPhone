@@ -1,6 +1,5 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.Color;
 
 public class Frame extends JFrame {
 	
@@ -20,8 +19,9 @@ public class Frame extends JFrame {
 		pane.setLayout(null);
 		pane.setBackground(new Color(21,63,130));
 		
-		JPanel phoneOutline = new Panel(31, new Color(255,255,255));
-		phoneOutline.setBounds(23,30,395,630);
+		Panel phoneOutline = new Panel(31, new Color(255,255,255));
+		phoneOutline.setLayout(new BoxLayout(phoneOutline, BoxLayout.Y_AXIS));
+		phoneOutline.setBounds(25,30,390,640);
 		phoneOutline.setOpaque(false);
 		pane.add(phoneOutline);
 	}
