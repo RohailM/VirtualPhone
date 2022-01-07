@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.*;
 import javax.swing.*;
 
 public class Frame extends JFrame {
@@ -19,9 +20,6 @@ public class Frame extends JFrame {
 		pane.setLayout(null);
 		pane.setBackground(new Color(21,63,130));
 		
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0,0,450,720);
-		
 		Panel phone = new Panel();
 		phone.setLayout(new BoxLayout(phone, BoxLayout.Y_AXIS));
 		phone.setBounds(25,30,390,640);
@@ -29,10 +27,14 @@ public class Frame extends JFrame {
 		
 		JPanel appArea = new JPanel();
 		appArea.setBounds(55, 125, 330, 430);
-		appArea.setLayout(new GridLayout(4, 4, 80, 80));
+		appArea.setLayout(new GridLayout(4, 3, 15, 25));
 		appArea.setBackground(new Color(224, 79, 79));
-		appArea.add(new JButton("1"));
-		appArea.add(new JButton("2"));
+		
+		App weather = new App("Weather", "src/images/weather_app.png");
+		App mcRonalds = new App("McRonalds", "src/images/mcronalds_app.png");
+		
+		appArea.add(weather);
+		appArea.add(mcRonalds);
 		appArea.add(new JButton("3"));
 		appArea.add(new JButton("4"));
 		appArea.add(new JButton("5"));
@@ -43,17 +45,9 @@ public class Frame extends JFrame {
 		appArea.add(new JButton("10"));
 		appArea.add(new JButton("11"));
 		appArea.add(new JButton("12"));
-		appArea.add(new JButton("13"));
-		appArea.add(new JButton("14"));
-		appArea.add(new JButton("15"));
-		appArea.add(new JButton("16"));
-		
-		// appArea.setVisible(true);
 
-		layeredPane.add(appArea);
-		layeredPane.add(phone);
-		
-		pane.add(layeredPane);
+		pane.add(appArea);
+		pane.add(phone);
 	}
 	
 	public void alignCenter() {
@@ -65,11 +59,5 @@ public class Frame extends JFrame {
 		ImageIcon icon = new ImageIcon(path);
 		this.setIconImage(icon.getImage());
 	}
-	/*
-	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawRoundRect(30, 50, 390, 650, 50, 50);
-	}
-	*/
 	
 }

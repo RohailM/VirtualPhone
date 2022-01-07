@@ -3,9 +3,6 @@ import javax.swing.*;
 
 public class Panel extends JPanel {
 	
-	private Color backgroundColor;
-	private int cornerRadius;
-	
 	JLabel label;
 	
 	public Panel() {
