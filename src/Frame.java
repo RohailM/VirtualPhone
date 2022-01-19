@@ -13,7 +13,7 @@ public class Frame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(resize);
 		
-		this.alignCenter();
+		alignCenter(this);
 		this.setIconOfFrame("src/images/phone_icon.png");
 		
 		Container pane = this.getContentPane();
@@ -32,10 +32,11 @@ public class Frame extends JFrame {
 		
 		App weather = new App("Weather", "src/images/weather_app.png");
 		App mcRonalds = new App("McRonalds", "src/images/mcronalds_app.png");
+		App currencyConverter = new App("Currency", "src/images/currency_app.png");
 		
 		appArea.add(weather);
 		appArea.add(mcRonalds);
-		appArea.add(new JButton("3"));
+		appArea.add(currencyConverter);
 		appArea.add(new JButton("4"));
 		appArea.add(new JButton("5"));
 		appArea.add(new JButton("6"));
@@ -48,11 +49,13 @@ public class Frame extends JFrame {
 
 		pane.add(appArea);
 		pane.add(phone);
+
+		this.requestFocusInWindow();
 	}
 	
-	public void alignCenter() {
+	public void alignCenter(JFrame frame) {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 	}
 	
 	public void setIconOfFrame(String path) {

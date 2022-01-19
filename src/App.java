@@ -1,4 +1,6 @@
 import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.event.*;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.*;
@@ -7,7 +9,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class App extends JButton {
+import Currency.CurrencyApp;
+import Weather.*;
+
+
+public class App extends JButton implements ActionListener {
 	String appName;
 	BufferedImage icon;
 	
@@ -23,6 +29,10 @@ public class App extends JButton {
 		}
 		
 		setIcon(getScaledIcon(icon, 0.1));
+		
+		this.addActionListener(this);
+		
+		appName = nameOfApp;
 	}
 	
     private ImageIcon getScaledIcon(final Image image, final double scale)
@@ -45,5 +55,36 @@ public class App extends JButton {
             }
         };
         return scaledIcon;
+    }
+    
+    public void actionPerformed(ActionEvent e) {
+    	if (this.appName == "Weather") {
+    		EventQueue.invokeLater(new Runnable() {
+    			public void run() {
+    				try {
+    					WeatherApp window = new WeatherApp(new Controller(new Model( new Weather("Mississauga"))));
+    					window.frame.setVisible(true);
+    					window.frame.requestFocusInWindow();
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		});
+    	}
+    	
+    	else if (this.appName == "Currency") {
+    		EventQueue.invokeLater(new Runnable() {
+    			public void run() {
+    				try {
+    					CurrencyApp window = new CurrencyApp();
+    					window.setVisible(true);
+    					window.requestFocusInWindow();
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		});
+    	}
+    	
     }
 }
