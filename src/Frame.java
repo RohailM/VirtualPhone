@@ -33,13 +33,16 @@ public class Frame extends JFrame {
 		App weather = new App("Weather", "src/images/weather_app.png");
 		App mcRonalds = new App("McRonalds", "src/images/mcronalds_app.png");
 		App currencyConverter = new App("Currency", "src/images/currency_app.png");
+		App notepad = new App("Notepad", "src/images/notepad_app.png");
+		App clock = new App("Clock", "src/images/clock_app.png");
+		App stopwatch = new App("Stopwatch", "src/images/stopwatch_icon.png");
 		
 		appArea.add(weather);
 		appArea.add(mcRonalds);
 		appArea.add(currencyConverter);
-		appArea.add(new JButton("4"));
-		appArea.add(new JButton("5"));
-		appArea.add(new JButton("6"));
+		appArea.add(notepad);
+		appArea.add(clock);
+		appArea.add(stopwatch);
 		appArea.add(new JButton("7"));
 		appArea.add(new JButton("8"));
 		appArea.add(new JButton("9"));

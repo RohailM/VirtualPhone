@@ -37,6 +37,7 @@ public class McRonaldsApp extends JFrame {
 		this.setTitle("McRonalds");
         this.setIconImage(new ImageIcon("src/images/mcronalds_app.png").getImage());
 		this.setSize(318, 774);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
 		
 		orderPanel.setBackground(new Color(255,255,255));

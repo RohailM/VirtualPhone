@@ -12,6 +12,7 @@ import javax.swing.*;
 import Currency.CurrencyApp;
 import McRonalds.McRonaldsApp;
 import Weather.*;
+import notepad.NotepadApp;
 
 
 public class App extends JButton implements ActionListener {
@@ -102,6 +103,21 @@ public class App extends JButton implements ActionListener {
     				}
     			}
     		});    		
+    	}
+    	
+    	else if (this.appName == "Notepad") {
+    		EventQueue.invokeLater(new Runnable() {
+    			public void run() {
+    				try {
+    					NotepadApp window = new NotepadApp();
+    					window.setLocation(1920/2-window.getSize().width/2, 1080/2-window.getSize().height/2);
+    					window.setVisible(true);
+    					window.requestFocusInWindow();
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		});  
     	}
     	
     }
