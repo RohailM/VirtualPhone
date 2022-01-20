@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Currency.CurrencyApp;
+import McRonalds.McRonaldsApp;
 import Weather.*;
 
 
@@ -63,6 +64,7 @@ public class App extends JButton implements ActionListener {
     			public void run() {
     				try {
     					WeatherApp window = new WeatherApp(new Controller(new Model( new Weather("Mississauga"))));
+    					window.frame.setLocation(1920/2-window.frame.getSize().width/2, 1080/2-window.frame.getSize().height/2);
     					window.frame.setVisible(true);
     					window.frame.requestFocusInWindow();
     				} catch (Exception e) {
@@ -77,6 +79,7 @@ public class App extends JButton implements ActionListener {
     			public void run() {
     				try {
     					CurrencyApp window = new CurrencyApp();
+    					window.setLocation(1920/2-window.getSize().width/2, 1080/2-window.getSize().height/2);
     					window.setVisible(true);
     					window.requestFocusInWindow();
     				} catch (Exception e) {
@@ -84,6 +87,21 @@ public class App extends JButton implements ActionListener {
     				}
     			}
     		});
+    	}
+    	
+    	else if (this.appName == "McRonalds") {
+    		EventQueue.invokeLater(new Runnable() {
+    			public void run() {
+    				try {
+    					McRonaldsApp window = new McRonaldsApp();
+    					window.setLocation(1920/2-window.getSize().width/2, 1080/2-window.getSize().height/2);
+    					window.setVisible(true);
+    					window.requestFocusInWindow();
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		});    		
     	}
     	
     }

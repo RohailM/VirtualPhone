@@ -28,7 +28,6 @@ public class CurrencyApp extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new FlowLayout());
         this.setResizable(false);
-        alignCenter(this);
         
         selectedCurrency = "USD";
         
@@ -107,11 +106,6 @@ public class CurrencyApp extends JFrame implements ActionListener {
             selectedCurrency = comboBox.getSelectedItem().toString();
         }
     }
-    
-	public void alignCenter(JFrame frame) {
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
-	}
 	
 	public int findIndex(String[] array, String searchingFor) {
 		for (int i = 0; i < array.length; i++) {
