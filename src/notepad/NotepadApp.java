@@ -1,42 +1,29 @@
 package notepad;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 
-public class NotepadApp extends JFrame implements ActionListener {
+public class NotepadApp extends JFrame implements ActionListener, ItemListener {
 
 	
 	JTextArea textEditor;
 	JScrollPane scrolling;
 	JSpinner fontSizeSpinner;
-	JComboBox fontStyle;
+	JComboBox<String> fontStyle;
+	
 	
 	JMenuBar menu;
 	JMenu fileMenu;
@@ -44,28 +31,44 @@ public class NotepadApp extends JFrame implements ActionListener {
 	JMenuItem saveItem;
 	JMenuItem exitItem;
 	JLabel label;
-	JLabel label2;
+	JLabel boldLabel;
+	JLabel italicsLabel;
+	JCheckBox boldCheckbox;
+	JCheckBox italicsCheckbox;
+	
+	boolean bold = false;
+	boolean italics = false;
 	
 	public NotepadApp(){
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Notes");
         this.setIconImage(new ImageIcon("src/images/notepad_icon.png").getImage());
 		this.setSize(400,700);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLayout(new FlowLayout());
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setBackground(Color.DARK_GRAY);
+		
 		textEditor = new JTextArea();
 		textEditor.setLineWrap(true);
 		textEditor.setWrapStyleWord(true);
 		textEditor.setFont(new Font("Times New Roman",Font.PLAIN,20));
 		
 		
+		boldLabel = new JLabel("Bold");
+		boldLabel.setForeground(Color.white);
+		
+		italicsLabel = new JLabel("Italics");
+		italicsLabel.setForeground(Color.white);
+		
+		boldCheckbox = new JCheckBox();
+		italicsCheckbox = new JCheckBox();
 		
 		scrolling = new JScrollPane(textEditor);
-		scrolling.setPreferredSize(new Dimension(300,650));
+		scrolling.setPreferredSize(new Dimension(350,550));
 		scrolling.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		
 		label = new JLabel("size");
+		label.setHorizontalAlignment(SwingConstants.LEFT);
 		label.setForeground(Color.white);
 		
 		fontSizeSpinner = new JSpinner();
@@ -100,6 +103,8 @@ public class NotepadApp extends JFrame implements ActionListener {
 		openItem.addActionListener(this);
 		saveItem.addActionListener(this);
 		exitItem.addActionListener(this);
+		boldCheckbox.addItemListener(this);
+		italicsCheckbox.addItemListener(this);
 		
 		fileMenu.add(openItem);
 		fileMenu.add(saveItem);
@@ -108,7 +113,10 @@ public class NotepadApp extends JFrame implements ActionListener {
 		
 		
 // ---------------------- menu bar-----------//
-		
+		this.add(boldLabel);
+		this.add(boldCheckbox);
+		this.add(italicsLabel);
+		this.add(italicsCheckbox);
 		this.setJMenuBar(menu);	
 		this.add(fontStyle);
 		this.add(fontSizeSpinner);
@@ -116,7 +124,7 @@ public class NotepadApp extends JFrame implements ActionListener {
 		this.add(scrolling);
 		this.setVisible(true);
 	}
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -124,6 +132,7 @@ public class NotepadApp extends JFrame implements ActionListener {
 			textEditor.setFont(new Font((String)fontStyle.getSelectedItem(),Font.PLAIN,textEditor.getFont().getSize()));
 		}
 		if (e.getSource()==openItem) {
+			textEditor.setText("");
 			JFileChooser fileChooser = new JFileChooser();
 			fileChooser.setCurrentDirectory(new File("."));
 			/*/FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt","html");
@@ -181,8 +190,58 @@ public class NotepadApp extends JFrame implements ActionListener {
 		}
 		if (e.getSource()==exitItem) {
 			System.exit(0);
+		}
+		
+	}
 	
-}
+	public void itemStateChanged(ItemEvent e) {
+		if (e.getSource() == boldCheckbox) {
+			if (e.getStateChange() == 1) {
+				bold = true;
+				
+				if (italics) {
+					textEditor.setFont(new Font((String)fontStyle.getSelectedItem(), Font.BOLD | Font.ITALIC, textEditor.getFont().getSize()));
+				}
+				else {
+					textEditor.setFont(new Font((String)fontStyle.getSelectedItem(), Font.BOLD, textEditor.getFont().getSize()));
+				}
+				
+			}
+			else {
+				bold = false;
+				
+				if (italics) {
+					textEditor.setFont(new Font((String)fontStyle.getSelectedItem(), Font.ITALIC, textEditor.getFont().getSize()));
+				}
+				else {
+					textEditor.setFont(new Font((String)fontStyle.getSelectedItem(), Font.PLAIN, textEditor.getFont().getSize()));
+				}
+			}
+		}
+		
+		if (e.getSource() == italicsCheckbox) {
+			if (e.getStateChange() == 1) {
+				italics = true;
+				
+				if (bold) {
+					textEditor.setFont(new Font((String)fontStyle.getSelectedItem(), Font.BOLD | Font.ITALIC, textEditor.getFont().getSize()));
+				}
+				else {
+					textEditor.setFont(new Font((String)fontStyle.getSelectedItem(), Font.ITALIC, textEditor.getFont().getSize()));
+				}
+	
+			}
+			else {
+				italics = false;
+				
+				if (bold) {
+					textEditor.setFont(new Font((String)fontStyle.getSelectedItem(), Font.BOLD, textEditor.getFont().getSize()));
+				}
+				else {
+					textEditor.setFont(new Font((String)fontStyle.getSelectedItem(), Font.PLAIN, textEditor.getFont().getSize()));
+				}
+			}
+		}
 	}
 	
 

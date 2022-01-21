@@ -47,7 +47,7 @@ public class McRonaldsApp extends JFrame {
 		output.setText("<html>Welcome To McRonalds!<br>Would you like to create an order? (y/n)</html>");
 		output.setFont(new Font("MV Boli", Font.BOLD, 9));
 		
-		orderOptions.setBackground(new Color(252,190,3));
+		orderOptions.setBackground(new Color(56,59,57));
 		orderOptions.setPreferredSize(new Dimension(318, 64));
 		orderOptions.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 5));
 		
