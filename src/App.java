@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Clock.ClockApp;
 import Currency.CurrencyApp;
 import McRonalds.McRonaldsApp;
 import Weather.*;
@@ -118,6 +119,12 @@ public class App extends JButton implements ActionListener {
     				}
     			}
     		});  
+    	}
+    	
+    	else if (this.appName == "Clock") {
+    		ClockApp window = new ClockApp();
+			window.setLocation(1920/2-window.getSize().width/2, 1080/2-window.getSize().height/2);
+    		window.setVisible(true);
     	}
     	
     }
