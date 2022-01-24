@@ -34,6 +34,7 @@ public class NotepadApp extends JFrame implements ActionListener, ItemListener {
 		this.setTitle("Notes");
         this.setIconImage(new ImageIcon("src/images/notepad_icon.png").getImage());
 		this.setSize(400,700);
+		this.setResizable(false);
 		this.setLayout(new FlowLayout());
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setBackground(Color.DARK_GRAY);
@@ -42,7 +43,6 @@ public class NotepadApp extends JFrame implements ActionListener, ItemListener {
 		textEditor.setLineWrap(true);
 		textEditor.setWrapStyleWord(true);
 		textEditor.setFont(new Font("Times New Roman",Font.PLAIN,20));
-		
 		
 		boldLabel = new JLabel("Bold");
 		boldLabel.setForeground(Color.white);

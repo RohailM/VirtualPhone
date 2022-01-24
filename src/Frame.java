@@ -35,7 +35,7 @@ public class Frame extends JFrame {
 		App currencyConverter = new App("Currency", "src/images/currency_app.png");
 		App notepad = new App("Notepad", "src/images/notepad_app.png");
 		App clock = new App("Clock", "src/images/clock_app.png");
-		App stopwatch = new App("Stopwatch", "src/images/stopwatch_icon.png");
+		App stopwatch = new App("Stopwatch", "src/images/stopwatch_app.png");
 		
 		appArea.add(weather);
 		appArea.add(mcRonalds);

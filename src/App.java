@@ -12,6 +12,7 @@ import javax.swing.*;
 import Clock.ClockApp;
 import Currency.CurrencyApp;
 import McRonalds.McRonaldsApp;
+import Stopwatch.StopwatchApp;
 import Weather.*;
 import notepad.NotepadApp;
 
@@ -125,6 +126,21 @@ public class App extends JButton implements ActionListener {
     		ClockApp window = new ClockApp();
 			window.setLocation(1920/2-window.getSize().width/2, 1080/2-window.getSize().height/2);
     		window.setVisible(true);
+    	}
+    	
+    	else if (this.appName == "Stopwatch") {
+    		EventQueue.invokeLater(new Runnable() {
+    			public void run() {
+    				try {
+    					StopwatchApp window = new StopwatchApp();
+    					window.setLocation(1920/2-window.getSize().width/2, 1080/2-window.getSize().height/2);
+    					window.setVisible(true);
+    					window.requestFocusInWindow();
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		});
     	}
     	
     }
