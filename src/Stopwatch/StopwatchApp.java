@@ -1,9 +1,11 @@
 package Stopwatch;
-
+// 100% Done By Rohail
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+// This class is an extension of the JFrame class and implements an ActionListener to listen for input by the user.
+// A basic stopwatch with all essential functionality.
 public class StopwatchApp extends JFrame implements ActionListener {
 	
 	JLabel time;
@@ -17,8 +19,9 @@ public class StopwatchApp extends JFrame implements ActionListener {
 	int elapsed = 0;
 	boolean started = false;
 	
+	// timer that runs task every 1000ms or 1s
 	Timer timer = new Timer(1000, new ActionListener() {
-		
+		// this method increments elapsed by 1000 every second, and updates all other variables
 		public void actionPerformed(ActionEvent e) {
 			elapsed += 1000;
 			seconds = elapsed / 1000;
@@ -65,6 +68,7 @@ public class StopwatchApp extends JFrame implements ActionListener {
 		
 	}
 
+	// This method is called when an action is performed inside the app, it checks where the action originated from, and does the corresponding task.
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == startButton) {
@@ -88,14 +92,17 @@ public class StopwatchApp extends JFrame implements ActionListener {
 		
 	}
 	
+	// this method simply starts the timer
 	void startTimer() {
 		timer.start();
 	}
 	
+	// this method pauses the timer
 	void pauseTimer() {
 		timer.stop();
 	}
 	
+	// this method resets the timer, and sets elapsed to 0
 	void resetTimer() {
 		timer.stop();
 		elapsed = 0;

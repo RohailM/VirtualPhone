@@ -1,5 +1,5 @@
 package McRonalds;
-
+// 100% Done By Rohail
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +10,7 @@ import java.util.Collections;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+// This class is an extension of the JFrame class and represents the McRonald App. An app with 3 items available for order.
 public class McRonaldsApp extends JFrame {
 	
 	JLabel output = new JLabel();
@@ -60,6 +61,7 @@ public class McRonaldsApp extends JFrame {
 		input = new JTextField();
 		input.setPreferredSize(new Dimension(290, 20));
 		input.addActionListener(new ActionListener() {
+			// fetches user's input in textfield, and if its equal to "Y" creates new order
 			public void actionPerformed(ActionEvent e) {
 				userChoice = getInput();
 			    System.out.println(userChoice);
@@ -74,6 +76,7 @@ public class McRonaldsApp extends JFrame {
 		JFrame frame = this;
 		
 		add.addActionListener(new ActionListener() {
+			// this method is called when the add button is clicked. it adds the item mentioned to the order, so long as it is available in the menu and there is an active order.
 			public void actionPerformed(ActionEvent e) {
 				if (orderStatus == false) {
 					JOptionPane.showMessageDialog(frame, "There is no order. Did you create an order?", "Error", JOptionPane.ERROR_MESSAGE);					
@@ -89,6 +92,7 @@ public class McRonaldsApp extends JFrame {
 		});
 		
 		remove.addActionListener(new ActionListener() {
+			// this method is called when the remove button is clicked. it removes the item specified, so long as that item exists on the menu, there is at least 1 of that item in the order, and there is an active order.
 			public void actionPerformed(ActionEvent e) {
 				if (orderStatus == false) {
 					JOptionPane.showMessageDialog(frame, "There is no order. Did you create an order?", "Error", JOptionPane.ERROR_MESSAGE);					
@@ -107,6 +111,7 @@ public class McRonaldsApp extends JFrame {
 		});
 		
 		cancel.addActionListener(new ActionListener() {
+			// this method is called when the cancel button is clicked. it cancels the current order, and resets the text
 			public void actionPerformed(ActionEvent e) {
 				if (orderStatus == false) {
 					JOptionPane.showMessageDialog(frame, "There is no order to cancel. Did you create an order?", "Error", JOptionPane.ERROR_MESSAGE);					
@@ -122,6 +127,7 @@ public class McRonaldsApp extends JFrame {
 		});
 		
 		confirm.addActionListener(new ActionListener() {
+			// this method is called when the confirm button is clicked. it checks if there is an order and if said order has at least 1 item. if these conditions are met, a pop up appears asking the user to select a tip amount. then, it sets the output to include the receipt with all costs
 			public void actionPerformed(ActionEvent e) {
 				if (orderStatus == false) {
 					JOptionPane.showMessageDialog(frame, "There is no order to cancel. Did you create an order?", "Error", JOptionPane.ERROR_MESSAGE);					
@@ -158,15 +164,33 @@ public class McRonaldsApp extends JFrame {
 		
 	}
 	
+	/*
+	 * This method retrieves the first character from input textfield
+	 * 
+	 * @param	None
+	 * @return	char	the first character
+	 */
 	public char getInput() {
 		return Character.toUpperCase(input.getText().charAt(0));
 	}
 	
+	/*
+	 * This method creates an order
+	 * 
+	 * @param	None
+	 * @return	void	simply sets text and font
+	 */
 	public void createOrder() {
 		output.setText("<html>Your Order:<br>Big Mac [0]<br>Happy Meal [0]<br>Pop [0]</html>");
 		output.setFont(new Font("Arial", 1, 16));	
 	}
 	
+	/*
+	 * This method checks whether an item is on the menu.
+	 * 
+	 * @param	item	the item to be checked
+	 * @return	boolean		whether the item is on menu or not
+	 */
 	public boolean checkIfInMenu(String item) {
 		for (String foodItem : menu) {
 			if (item.equals(foodItem)) {
@@ -176,11 +200,23 @@ public class McRonaldsApp extends JFrame {
 		return false;
 	}
 	
+	/*
+	 * This method counts how many times an item appears in an ArrayList
+	 * 
+	 * @param	order	the arraylist that will be checked		item	the item whose appearance will be counted
+	 * @return	int 	the amount of times the item appeared
+	 */
     public int countFrequency(ArrayList<String> order, String item) {
         int occurrences = Collections.frequency(order, item);
         return occurrences;
     }
     
+    /*
+     * This method determines the total price of an item.
+     * 
+     * @param	order	used to check quantity of item		item	the item whose total price is to be found
+     * @return	double	returns total price of specifed item
+     */
     public double determinePrice(ArrayList<String> order, String item) {
         int quantity = countFrequency(order, item);
         double cost = 0;
@@ -198,6 +234,12 @@ public class McRonaldsApp extends JFrame {
         return round(cost);
     }
     
+    /*
+     * This method calculates the tip owed by customer.
+     * 
+     * @param	tipChoice	the percentage selected by user		subTotal	subtotal of order
+     * @return	double	the tip
+     */
     public double calculateTip(String tipChoice, double subTotal) {
         double tipRate = 0;
         
@@ -221,6 +263,12 @@ public class McRonaldsApp extends JFrame {
         return tipAmount;
     }
     
+    /*
+     * This method rounds the argument to 2 decimal places.
+     * 
+     * @param	a	the number to be rounded
+     * @return	double	"a" rounded to 2 decimal places
+     */
     public static double round (double a) {
         double roundOff = Math.round(a * 100.0) / 100.0;
         return roundOff;

@@ -13,19 +13,21 @@ import Calculator.CalculatorApp;
 import Clock.ClockApp;
 import Currency.CurrencyApp;
 import McRonalds.McRonaldsApp;
+import Memory.MemoryApp;
 import Stopwatch.StopwatchApp;
 import Weather.*;
 import notepad.NotepadApp;
-
-
+// 100% Rohail
+// This class is an extension of the JButton class, and is being used to model the apps of the phone and simplify their creation process. This class requires 2 arguments to be created, them being nameOfApp (text on JButton) and pathToIcon (used to get icon of JButton)
+// It implements ActionListener so it can listen to when the app (button) is clicked.
 public class App extends JButton implements ActionListener {
 	String appName;
 	BufferedImage icon;
 	
 	public App(String nameOfApp, String pathToIcon) {
 		super(nameOfApp);
-		setHorizontalTextPosition(AbstractButton.CENTER);
-		setVerticalTextPosition(AbstractButton.BOTTOM);
+		setHorizontalTextPosition(AbstractButton.CENTER); // aligns the text to center of button horizontally
+		setVerticalTextPosition(AbstractButton.BOTTOM); // aligns the text to bottom of button
 	
 		try {
 			icon = ImageIO.read(new File(pathToIcon));
@@ -33,13 +35,19 @@ public class App extends JButton implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		setIcon(getScaledIcon(icon, 0.1));
+		setIcon(getScaledIcon(icon, 0.1)); // method created below, 10x smaller image
 		
-		this.addActionListener(this);
+		this.addActionListener(this); // actionListener can be found below
 		
 		appName = nameOfApp;
 	}
 	
+	/*
+	 * This method resizes an image by the given scale.
+	 * 
+	 * @param	image	the image to be resized		scale 	the scale of which the image ought to be resized
+	 * @return	ImageIcon	returns the resized image
+	 */
     private ImageIcon getScaledIcon(final Image image, final double scale)
     {
         ImageIcon scaledIcon = new ImageIcon(image)
@@ -62,7 +70,9 @@ public class App extends JButton implements ActionListener {
         return scaledIcon;
     }
     
+    // action listener for when button is pressed
     public void actionPerformed(ActionEvent e) {
+    	// control flow based on the app that is clicked
     	if (this.appName == "Weather") {
     		EventQueue.invokeLater(new Runnable() {
     			public void run() {
@@ -120,8 +130,17 @@ public class App extends JButton implements ActionListener {
     	}
     	
     	else if (this.appName == "Clock") {
-    		ClockApp window = new ClockApp();
-    		window.setVisible(true);
+    		EventQueue.invokeLater(new Runnable() {
+    			public void run() {
+    				try {
+    		    		ClockApp window = new ClockApp();
+    		    		window.setVisible(true);
+    					window.requestFocusInWindow();
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		});
     	}
     	
     	else if (this.appName == "Stopwatch") {
@@ -143,6 +162,20 @@ public class App extends JButton implements ActionListener {
     			public void run() {
     				try {
     					CalculatorApp window = new CalculatorApp();
+    					window.setVisible(true);
+    					window.requestFocusInWindow();
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		});
+    	}
+    	
+    	else if (this.appName == "Memory") {
+    		EventQueue.invokeLater(new Runnable() {
+    			public void run() {
+    				try {
+    					MemoryApp window = new MemoryApp();
     					window.setVisible(true);
     					window.requestFocusInWindow();
     				} catch (Exception e) {

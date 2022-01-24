@@ -1,10 +1,12 @@
 package Calculator;
-
+// 100% done by Rohail
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.lang.Math;
 
+// this class is an extension of the JFrame class
+// a calculator app with all the basic functions, has cool ui made by me :D
 public class CalculatorApp extends JFrame {
 	
 	JTextField display; // declaring variable for display textfield
@@ -33,6 +35,7 @@ public class CalculatorApp extends JFrame {
 		display.setHorizontalAlignment(SwingConstants.RIGHT); // sets alignment for text to right
 		this.add(display);
 		
+		// initButton method can be found below, made this method for convenience purposes
 		clrButton = initButton("CLR", 20, 160, green, event -> {
 			display.setText("0");
 		});

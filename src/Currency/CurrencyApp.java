@@ -1,3 +1,4 @@
+// Gui Done By Furqaan, Functionality Done By Rohail
 package Currency;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,6 +11,7 @@ import javax.swing.border.Border;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
+// This class is for the currency app. It is an extension of JFrame, and implenets ActionListener to listen for input by the user. This application will convert any amount of CAD to any of the 5 currencies available.
 public class CurrencyApp extends JFrame implements ActionListener {
     
     JComboBox<String> comboBox;
@@ -79,6 +81,7 @@ public class CurrencyApp extends JFrame implements ActionListener {
         
 		button.addActionListener(new ActionListener()
 	    {
+	        	// listens for when the "Convert" button is pressed, and executes below code
 		       public void actionPerformed(ActionEvent e)
 		       {
 		    	   amount = Double.parseDouble(amountField.getText());
@@ -101,13 +104,19 @@ public class CurrencyApp extends JFrame implements ActionListener {
     }
         
 
-
+    // action listener for dropdown list with available currencies, changes selectedCurrency based on user input
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== comboBox) {
             selectedCurrency = comboBox.getSelectedItem().toString();
         }
     }
 	
+    /*
+     * This method finds the index of the element on an array. I made a file called currencies.txt with the conversion rate, and each currency is on a seperate line (which corresponds to the index in the array). That's why this method is useful. - Rohail
+     * 
+     * @param	array	the array that will be searched		searchingFor	the element that is being searched for
+     * @return	int		the index of the element
+     */
 	public int findIndex(String[] array, String searchingFor) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i].equals(searchingFor)) {

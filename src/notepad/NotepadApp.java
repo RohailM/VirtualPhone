@@ -1,5 +1,5 @@
 package notepad;
-
+// 80% Furqaan, 20% Rohail (i did the bold & italic checkboxes)
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -8,6 +8,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.util.Scanner;
 
+// this class is an extension of the jframe class, and implements both an actionlistener and itemlistener which listen for input by the user.
+// this class is for a Notepad app, where you can type text, change its font and size, save it to a text file, and even open a text file.
 public class NotepadApp extends JFrame implements ActionListener, ItemListener {
 
 	JTextArea textEditor;
@@ -115,6 +117,7 @@ public class NotepadApp extends JFrame implements ActionListener, ItemListener {
 		this.setVisible(true);
 	}
 	
+	// this method is called whenever an action is performed, and depending on the source of the action, it executes a different program
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -184,6 +187,7 @@ public class NotepadApp extends JFrame implements ActionListener, ItemListener {
 		
 	}
 	
+	// this method is called when the itemState of a checkbox is changed, it checks which checkbox is changed and does the corresponding action
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getSource() == boldCheckbox) {
 			if (e.getStateChange() == 1) {

@@ -1,5 +1,5 @@
 package Clock;
-
+// 100% Done By ROhail
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -14,7 +14,7 @@ import java.util.Timer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
+// This class is an extension of JFrame. It is a Clock app, both digital and real.
 public class ClockApp extends JFrame {
 	
 	Calendar calendar;
@@ -77,6 +77,12 @@ public class ClockApp extends JFrame {
 		updateTime();
 	}
 	
+	/*
+	 * This method scales the image provided by the given scale, and returns the resized image.
+	 * 
+	 * @param	before	the image to be scaled	scale	the scale	type	type of image
+	 * @return	BufferedImage	the image resized :D
+	 */
 	private static BufferedImage scale(final BufferedImage before, final double scale, final int type) {
 	    int w = before.getWidth();
 	    int h = before.getHeight();
@@ -89,6 +95,12 @@ public class ClockApp extends JFrame {
 	    return after;
 	}
 	
+	/*
+	 * This method utilizes a timer to update the time every second.
+	 * 
+	 * @param	none
+	 * @return	void
+	 */
 	public void updateTime() {
 		TimerTask task = new TimerTask() {
 			public void run() {
@@ -123,7 +135,7 @@ public class ClockApp extends JFrame {
 		};
 		
 		Timer timer = new Timer();
-		timer.schedule(task, 0, 1000);
+		timer.schedule(task, 0, 1000); // the second argument is delay before timer should start, and third argument is interval between task execution
 	}
 	
 }
