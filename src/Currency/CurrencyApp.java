@@ -28,6 +28,7 @@ public class CurrencyApp extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new FlowLayout());
         this.setResizable(false);
+		this.setLocationRelativeTo(null); // moves window to center of screen
         
         selectedCurrency = "USD";
         

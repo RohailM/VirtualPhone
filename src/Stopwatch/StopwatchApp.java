@@ -36,6 +36,7 @@ public class StopwatchApp extends JFrame implements ActionListener {
 		this.getContentPane().setBackground(new Color(165, 207, 201));
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
+		this.setLocationRelativeTo(null); // moves window to center of screen
 		this.setLayout(null);
 
 		time = new JLabel();

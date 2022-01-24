@@ -45,8 +45,7 @@ public class WeatherApp {
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 355, 600);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//frame.getContentPane().setLayout(new CardLayout(0, 0));
-		
+		frame.setLocationRelativeTo(null); // moves window to center of screen
 		
 		JPanel first = new JPanel();
 		//frame.getContentPane().add(first, "home");

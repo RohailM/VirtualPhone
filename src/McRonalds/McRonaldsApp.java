@@ -39,6 +39,7 @@ public class McRonaldsApp extends JFrame {
 		this.setSize(318, 774);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
+		this.setLocationRelativeTo(null); // moves window to center of screen
 		
 		orderPanel.setBackground(new Color(255,255,255));
 		orderPanel.setBounds(65, 55, 185, 330);

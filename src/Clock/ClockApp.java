@@ -43,6 +43,7 @@ public class ClockApp extends JFrame {
 		this.getContentPane().setBackground(new Color(255, 255, 255));
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(false);
+		this.setLocationRelativeTo(null); // moves window to center of screen
 		
 		timeFormat = new SimpleDateFormat("hh:mm:ss a");
 		hour = new SimpleDateFormat("hh");

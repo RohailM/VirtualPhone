@@ -36,6 +36,7 @@ public class Frame extends JFrame {
 		App notepad = new App("Notepad", "src/images/notepad_app.png");
 		App clock = new App("Clock", "src/images/clock_app.png");
 		App stopwatch = new App("Stopwatch", "src/images/stopwatch_app.png");
+		App calculator = new App("Calculator", "src/images/calculator_app.png");
 		
 		appArea.add(weather);
 		appArea.add(mcRonalds);
@@ -43,7 +44,7 @@ public class Frame extends JFrame {
 		appArea.add(notepad);
 		appArea.add(clock);
 		appArea.add(stopwatch);
-		appArea.add(new JButton("7"));
+		appArea.add(calculator);
 		appArea.add(new JButton("8"));
 		appArea.add(new JButton("9"));
 		appArea.add(new JButton("10"));
