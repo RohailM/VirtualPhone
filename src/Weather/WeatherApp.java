@@ -1,5 +1,5 @@
 package Weather;
-
+// 100% Rohail
 import javax.swing.JFrame;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -19,27 +19,28 @@ import java.awt.event.FocusListener;
 
 import javax.swing.JTextField;
 
-public class WeatherApp {
+// This class extends the JFrame class, and is used to create instances of the app. A weather app that can retrieve the weather of any city.
+public class WeatherApp extends JFrame {
 
 	public JFrame frame;
 	private JTextField cityField;
-	private Controller controller;
+	private City city;
 	private String currentTemp;
 	private String longDescription;
 
 	/**
 	 * Create the application.
 	 */
-	public WeatherApp(Controller c) {
-		initialize();
-		this.controller = c;
+	public WeatherApp(City c) {
+		frame = this;
+		this.city = c;
+		initialize(); // method created below
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
 		frame.setTitle("Weather Forecast");
 		frame.setIconImage(new ImageIcon("src/images/weather_icon.png").getImage());
 		frame.setResizable(false);
@@ -62,6 +63,7 @@ public class WeatherApp {
 		cityField.setBounds(22, 292, 315, 50);
 		first.add(cityField);
 		cityField.setColumns(10);
+		// when user doesn't have focus on text field, it shows "Search for a city...", when focus is gained it sets the textfield to empty
 		cityField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 			    cityField.setText(""); 
@@ -89,10 +91,10 @@ public class WeatherApp {
 		first.add(greetingLbl);
 		
 		
-		JButton showWeatherPane = new JButton("Let's go!");
-		showWeatherPane.setFont(new Font("Avenir Next", Font.BOLD, 15));
-		showWeatherPane.setBounds(92, 435, 170, 42);
-		first.add(showWeatherPane);
+		JButton showWeather = new JButton("Let's go!");
+		showWeather.setFont(new Font("Avenir Next", Font.BOLD, 15));
+		showWeather.setBounds(92, 435, 170, 42);
+		first.add(showWeather);
 		JLabel background = new JLabel(icon);
 		background.setBounds(0, 0, 355, 578);
 		first.add(background);
@@ -131,14 +133,15 @@ public class WeatherApp {
 		tempBackground.setBounds(0, 0, 355, 578);
 		second.add(tempBackground);
 		
-		showWeatherPane.addActionListener(new ActionListener()
+		showWeather.addActionListener(new ActionListener()
 	    {
+				// when showWeather button is pressed, it gets the city from textfield, and checks if its a valid city
 		       public void actionPerformed(ActionEvent e)
 		       {
 		    	   String city = cityField.getText();
-		    	   if(controller.validCity(city)) {
-		    		   currentTemp = controller.getTemp();
-		    		   longDescription = controller.getDesc().substring(0, 1).toUpperCase() + controller.getDesc().substring(1);
+		    	   if(validCity(city)) {
+		    		   currentTemp = getTemp();
+		    		   longDescription = getDesc().substring(0, 1).toUpperCase() + getDesc().substring(1);
 		    		   tempLbl.setText("Current tempertaure in " + cityField.getText()+ ":"  );
 		    		   currentTempLbl.setText(currentTemp + "C°");
 		    		   tempDescriptionText.setText(longDescription);
@@ -157,5 +160,36 @@ public class WeatherApp {
 		
 		
 		}
+	
+	/*
+	 * This method initializes the class city with the given argument, and then returns a field (boolean) that says whether the city is valid.
+	 * 
+	 * @param	s	the city to check
+	 * @return	boolean		whether or not the city is real
+	 */
+	public boolean validCity (String s) {
+		this.city.init(s);
+		return this.city.valid;
+	}
+	
+	/*
+	 * This method accesses the getCurrentTemp method of the class city, in order to retrieve its temperature.
+	 * 
+	 * @param	none, in the above method we already initialized an object of city class
+	 * @return	String		a string that contains the temperature of the city
+	 */
+	public String getTemp() {
+		return city.getCurrentTemp();
+	}
+	
+	/*
+	 * This method accesses the getLongDescription method of the class city, in order to retrieve a description of the city's weather condition.
+	 * 
+	 * @param	none, in the validCity method, we already initialized an object of the class city, so we can simply access its methods
+	 * @return	String	a string that contains a long description of the city's current climate
+	 */
+	public String getDesc() {
+		return this.city.getLongDescription();
+	}
 	
 }

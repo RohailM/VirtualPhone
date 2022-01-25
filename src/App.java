@@ -28,6 +28,7 @@ public class App extends JButton implements ActionListener {
 		super(nameOfApp);
 		setHorizontalTextPosition(AbstractButton.CENTER); // aligns the text to center of button horizontally
 		setVerticalTextPosition(AbstractButton.BOTTOM); // aligns the text to bottom of button
+		setFocusable(false);
 	
 		try {
 			icon = ImageIO.read(new File(pathToIcon));
@@ -77,9 +78,9 @@ public class App extends JButton implements ActionListener {
     		EventQueue.invokeLater(new Runnable() {
     			public void run() {
     				try {
-    					WeatherApp window = new WeatherApp(new Controller(new Model( new Weather("Mississauga"))));
-    					window.frame.setVisible(true);
-    					window.frame.requestFocusInWindow();
+    					WeatherApp window = new WeatherApp(new City( new Weather("Mississauga")));
+    					window.setVisible(true);
+    					window.requestFocusInWindow();
     				} catch (Exception e) {
     					e.printStackTrace();
     				}
